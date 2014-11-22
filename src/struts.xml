@@ -5,4 +5,16 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="Pet Store" namespace="/" extends="struts-default">
+
+        <action name="doLogin" class="servletsPetStore.ServletLogin" method="doLogin">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+
+        </action>
+
+    </package>
+
 </struts>
