@@ -1,6 +1,8 @@
 package servletsPetStore;
 
 import com.opensymphony.xwork2.ActionSupport;
+import login.LoginAD;
+import org.orm.PersistentException;
 
 /**
  * Created by Pedro on 22/11/14.
@@ -9,8 +11,12 @@ public class ServletLogin extends ActionSupport {
 
     private String user;
     private String pass;
+    private LoginAD loginAD;
 
-    public String doLogin() {
+    public String doLogin() throws PersistentException {
+        loginAD = new LoginAD();
+        boolean a = loginAD.doLogin(user, pass);
+
         System.out.println(getUser());
         return "success";
     }

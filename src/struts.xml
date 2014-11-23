@@ -12,7 +12,11 @@
         <action name="doLogin" class="servletsPetStore.ServletLogin" method="doLogin">
             <result name="success">/index.jsp</result>
             <result name="error">/error.jsp</result>
+        </action>
 
+        <action name="listCategories" class="servletsPetStore.ServletProductos" method="listCategories">
+            <result name="success">/ListaCategorias.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
 
     </package>
