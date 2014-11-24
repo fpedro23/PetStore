@@ -8,16 +8,6 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="productos.Categoria" errorPage="" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" errorPage="" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" errorPage="" %>
-
-
-<%
-    Categoria[] listaCategorias = (Categoria[]) request.getAttribute("listaCategorias");
-
-    /*for (int i = 0; i < listaCategorias.length; i++) {
-        out.println(listaCategorias[i].getNombreCategoria());
-    }*/
-%>
 
 
 <html>
@@ -25,11 +15,13 @@
     <title></title>
 </head>
 <body>
+<%
+    Categoria[] listaCategorias = (Categoria[]) request.getAttribute("listaCategorias");
 
-<logic:iterate name="listaCategorias" id="listaCategorias">
-    <p>
-        Nombre Categoria <bean:write name="listaCategorias" property="nombreCategoria"/> ,
-    </p>
-</logic:iterate>
+    for (int i = 0; i < listaCategorias.length; i++) {
+        out.println(listaCategorias[i].getNombreCategoria());
+    }
+%>
+
 </body>
 </html>

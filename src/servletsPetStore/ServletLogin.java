@@ -9,31 +9,78 @@ import org.orm.PersistentException;
  */
 public class ServletLogin extends ActionSupport {
 
-    private String user;
-    private String pass;
+    private String email;
+    private String password;
+    private String direccion;
+    private String numeroTelefono;
+    private String mascotaFavorita;
+    public String mensajeResultado;
+
     private LoginAD loginAD;
 
     public String doLogin() throws PersistentException {
         loginAD = new LoginAD();
-        boolean a = loginAD.doLogin(user, pass);
+        boolean resultado = loginAD.doLogin(email, password);
 
-        System.out.println(getUser());
-        return "success";
+        if (resultado) {
+            mensajeResultado = "Login Exitoso";
+            return "success";
+        } else {
+            mensajeResultado = "Login Fallido";
+            return "error";
+        }
+
     }
 
-    public String getPass() {
-        return pass;
+    public String registerUser() throws PersistentException {
+        loginAD = new LoginAD();
+        boolean resultado = loginAD.registerNewUser(email, password, direccion, numeroTelefono, mascotaFavorita);
+        if (resultado) {
+            mensajeResultado = "Registro de usuario exitoso";
+            return "success";
+        } else {
+            mensajeResultado = "Registro de usuario no exitoso";
+            return "error";
+        }
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUser() {
-        return user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getNumeroTelefono() {
+        return numeroTelefono;
+    }
+
+    public void setNumeroTelefono(String numeroTelefono) {
+        this.numeroTelefono = numeroTelefono;
+    }
+
+    public String getMascotaFavorita() {
+        return mascotaFavorita;
+    }
+
+    public void setMascotaFavorita(String mascotaFavorita) {
+        this.mascotaFavorita = mascotaFavorita;
     }
 }

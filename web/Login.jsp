@@ -13,10 +13,10 @@
 <body>
 
 <form action="doLogin" name="login" id="login">
-    <label for="user">Usuario</label>
-    <input type="text" id="user" name="user"/>
-    <label for="pass">Contrase&ntilde;a</label>
-    <input type="password" id="pass" name="pass"/>
+    <label for="email">Usuario</label>
+    <input type="text" id="email" name="email"/>
+    <label for="password">Contrase&ntilde;a</label>
+    <input type="password" id="password" name="password"/>
     <input type="submit" value="Iniciar Sesion"/>
 </form>
 

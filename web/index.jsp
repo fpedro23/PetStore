@@ -13,5 +13,8 @@
 <body>
 <h1>Pet Store Actions</h1>
 <a href="Login.jsp">Login</a>
+<a href="listCategories">Lista Categorias</a>
+<a href="RegisterNewUser.jsp">Registrar Usuario</a>
+
 </body>
 </html>

@@ -14,6 +14,11 @@
             <result name="error">/error.jsp</result>
         </action>
 
+        <action name="registerUser" class="servletsPetStore.ServletLogin" method="registerUser">
+            <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
         <action name="listCategories" class="servletsPetStore.ServletProductos" method="listCategories">
             <result name="success">/ListaCategorias.jsp</result>
             <result name="error">/error.jsp</result>

@@ -1,6 +1,7 @@
 package login;
 
 import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
 
 
 /**
@@ -14,18 +15,39 @@ public class LoginAD {
     public boolean doLogin(String userName, String password) throws PersistentException {
 
         System.out.println("Listing Usuario...");
+        UsuarioCriteria usuarioCriteria = new UsuarioCriteria();
+        usuarioCriteria.email.eq(userName);
+        usuarioCriteria.password.eq(password);
 
-        login.Usuario[] loginUsuarios = login.UsuarioDAO.listUsuarioByQuery(null, null);
+        Usuario[] usuario = UsuarioDAO.listUsuarioByCriteria(usuarioCriteria);
 
-        System.out.println(login.UsuarioDAO.getUsuarioByORMID("fpedro3@gmail.com"));
+        if (usuario.length == 1) {
+            return true;
+        } else {
+            return false;
 
-        int length = Math.min(loginUsuarios.length, ROW_COUNT);
-        for (int i = 0; i < length; i++) {
-            System.out.println(loginUsuarios[i].getDireccion());
         }
-        System.out.println(length + " record(s) retrieved.");
 
-        return true;
+    }
+
+    public boolean registerNewUser(String email, String password, String direccion, String numeroTelefono, String mascotaFavorita) throws PersistentException {
+
+        PersistentTransaction t = login.PetStorePersistentManager.instance().getSession().beginTransaction();
+        try {
+
+            Usuario usuario = UsuarioDAO.createUsuario();
+            usuario.setEmail(email);
+            usuario.setPassword(password);
+            usuario.setDireccion(direccion);
+            usuario.setNumeroTelefono(numeroTelefono);
+            usuario.setMascotaFavorita(mascotaFavorita);
+            UsuarioDAO.save(usuario);
+            t.commit();
+            return true;
+        } catch (Exception e) {
+            t.rollback();
+            return false;
+        }
     }
 
 

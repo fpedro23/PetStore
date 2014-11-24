@@ -16,13 +16,21 @@ public class ServletProductos extends ActionSupport {
     public Item[] listaItems;
     public String nombreCategoria;
     public String nombreProducto;
+    public String mensajeResultado;
 
     public String listCategories() throws PersistentException {
         ProductosAD productosAD;
 
         productosAD = new ProductosAD();
         listaCategorias = productosAD.listarCategorias();
-        return "success";
+
+        if (listaCategorias == null) {
+            mensajeResultado = "Error, no se encontró ningun producto.";
+            return "error";
+        } else {
+            return "success";
+        }
+
     }
 
     public String listProductsFromCategory() throws PersistentException {
@@ -30,7 +38,12 @@ public class ServletProductos extends ActionSupport {
 
         productosAD = new ProductosAD();
         listaProductos = productosAD.listarProductosDeCategoria(nombreCategoria);
-        return "success";
+        if (listaProductos == null) {
+            mensajeResultado = "Error, no se encontró ningun producto.";
+            return "error";
+        } else {
+            return "success";
+        }
     }
 
     public String listItemsFromProduct() throws PersistentException {
@@ -38,14 +51,24 @@ public class ServletProductos extends ActionSupport {
 
         productosAD = new ProductosAD();
         listaItems = productosAD.listarItemsDeProducto(nombreProducto, nombreCategoria);
-        return "success";
+        if (listaItems == null) {
+            mensajeResultado = "Error, no se encontró ningun producto.";
+            return "error";
+        } else {
+            return "success";
+        }
     }
 
     public String findProductByName() throws PersistentException {
         ProductosAD productosAD;
         productosAD = new ProductosAD();
         listaProductos = productosAD.buscarProducto(nombreProducto);
-        return "success";
+        if (listaProductos == null) {
+            mensajeResultado = "Error, no se encontró ningun producto.";
+            return "error";
+        } else {
+            return "success";
+        }
     }
 
     public String getNombreCategoria() {
