@@ -15,6 +15,8 @@
 <a href="Login.jsp">Login</a>
 <a href="listCategories">Lista Categorias</a>
 <a href="RegisterNewUser.jsp">Registrar Usuario</a>
+<a href="ShoppingCartProducts.jsp">Productos del Carro</a>
+
 
 </body>
 </html>
