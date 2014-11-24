@@ -14,9 +14,11 @@ public class ServletProductos extends ActionSupport {
     public Categoria[] listaCategorias;
     public Producto[] listaProductos;
     public Item[] listaItems;
+    public Item item;
     public String nombreCategoria;
     public String nombreProducto;
     public String mensajeResultado;
+    public int idItem;
 
     public String listCategories() throws PersistentException {
         ProductosAD productosAD;
@@ -70,6 +72,19 @@ public class ServletProductos extends ActionSupport {
             return "success";
         }
     }
+
+    public String findItemByID() throws PersistentException {
+        ProductosAD productosAD;
+        productosAD = new ProductosAD();
+        item = productosAD.findItem(idItem);
+        if (item == null) {
+            mensajeResultado = "Error, no se encontró ningun Item.";
+            return "error";
+        } else {
+            return "success";
+        }
+    }
+
 
     public String getNombreCategoria() {
         return nombreCategoria;

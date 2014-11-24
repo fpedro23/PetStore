@@ -40,6 +40,11 @@
             <result name="error">/error.jsp</result>
         </action>
 
+        <action name="findItemByID" class="servletsPetStore.ServletProductos" method="findItemByID">
+            <result name="success">/DetalleItem.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
 
     </package>
 

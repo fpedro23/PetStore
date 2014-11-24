@@ -78,6 +78,11 @@ public class ProductosAD {
         }
     }
 
+    public Item findItem(int idItem) throws PersistentException {
+        Item item = ItemDAO.getItemByORMID(idItem);
+        return item;
+    }
+
 }
 
 
