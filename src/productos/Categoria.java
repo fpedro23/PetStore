@@ -14,17 +14,6 @@
 package productos;
 
 public class Categoria {
-    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-        public java.util.Set getSet(int key) {
-            return this_getSet(key);
-        }
-
-    };
-    public final productos.ProductoSetCollection producto = new productos.ProductoSetCollection(this, _ormAdapter, login.ORMConstants.KEY_CATEGORIA_PRODUCTO, login.ORMConstants.KEY_PRODUCTO_CATEGORIAS, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
-    private int id;
-    private Integer nombreCategoria;
-    private java.util.Set ORM_producto = new java.util.HashSet();
-
     public Categoria() {
     }
 
@@ -36,40 +25,41 @@ public class Categoria {
         return null;
     }
 
-    public int getId() {
-        return id;
-    }
+    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+        public java.util.Set getSet(int key) {
+            return this_getSet(key);
+        }
 
-    private void setId(int value) {
-        this.id = value;
-    }
+    };
 
-    public int getORMID() {
-        return getId();
-    }
+    private String nombreCategoria;
 
-    public void setNombreCategoria(int value) {
-        setNombreCategoria(new Integer(value));
-    }
+    private java.util.Set ORM_producto = new java.util.HashSet();
 
-    public Integer getNombreCategoria() {
-        return nombreCategoria;
-    }
-
-    public void setNombreCategoria(Integer value) {
+    public void setNombreCategoria(String value) {
         this.nombreCategoria = value;
     }
 
-    private java.util.Set getORM_Producto() {
-        return ORM_producto;
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public String getORMID() {
+        return getNombreCategoria();
     }
 
     private void setORM_Producto(java.util.Set value) {
         this.ORM_producto = value;
     }
 
+    private java.util.Set getORM_Producto() {
+        return ORM_producto;
+    }
+
+    public final productos.ProductoSetCollection producto = new productos.ProductoSetCollection(this, _ormAdapter, login.ORMConstants.KEY_CATEGORIA_PRODUCTO, login.ORMConstants.KEY_PRODUCTO_CATEGORIAS, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
     public String toString() {
-        return String.valueOf(getId());
+        return String.valueOf(getNombreCategoria());
     }
 
 }

@@ -19,21 +19,19 @@ import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.AssociationExpression;
 import org.orm.criteria.CollectionExpression;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.StringExpression;
 
 public class ProductoCriteria extends AbstractORMCriteria {
-    public final IntegerExpression id;
-    public final IntegerExpression nombreProducto;
-    public final IntegerExpression categoriasId;
+    public final StringExpression nombreProducto;
+    public final StringExpression categoriasId;
     public final AssociationExpression categorias;
     public final CollectionExpression item;
 
     public ProductoCriteria(Criteria criteria) {
         super(criteria);
-        id = new IntegerExpression("id", this);
-        nombreProducto = new IntegerExpression("nombreProducto", this);
-        categoriasId = new IntegerExpression("categorias.id", this);
-        categorias = new AssociationExpression("categorias", this);
+        nombreProducto = new StringExpression("nombreProducto", this);
+        categoriasId = new StringExpression("ORM_Categorias.nombreCategoria", this);
+        categorias = new AssociationExpression("ORM_Categorias", this);
         item = new CollectionExpression("ORM_Item", this);
     }
 
@@ -46,7 +44,7 @@ public class ProductoCriteria extends AbstractORMCriteria {
     }
 
     public CategoriaCriteria createCategoriasCriteria() {
-        return new CategoriaCriteria(createCriteria("categorias"));
+        return new CategoriaCriteria(createCriteria("ORM_Categorias"));
     }
 
     public ItemCriteria createItemCriteria() {

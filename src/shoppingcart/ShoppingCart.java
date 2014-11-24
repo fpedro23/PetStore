@@ -14,23 +14,6 @@
 package shoppingcart;
 
 public class ShoppingCart {
-    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-        public java.util.Set getSet(int key) {
-            return this_getSet(key);
-        }
-
-        public void setOwner(Object owner, int key) {
-            this_setOwner(owner, key);
-        }
-
-    };
-    public final shoppingcart.ShoppingCart_itemSetCollection shoppingCart_item = new shoppingcart.ShoppingCart_itemSetCollection(this, _ormAdapter, login.ORMConstants.KEY_SHOPPINGCART_SHOPPINGCART_ITEM, login.ORMConstants.KEY_SHOPPINGCART_ITEM_SHOPPINGCART, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
-    private int id;
-    private Double subTotal;
-    private Double total;
-    private login.Usuario usuarioemail;
-    private java.util.Set ORM_shoppingCart_item = new java.util.HashSet();
-
     public ShoppingCart() {
     }
 
@@ -48,12 +31,33 @@ public class ShoppingCart {
         }
     }
 
-    public int getId() {
-        return id;
-    }
+    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+        public java.util.Set getSet(int key) {
+            return this_getSet(key);
+        }
+
+        public void setOwner(Object owner, int key) {
+            this_setOwner(owner, key);
+        }
+
+    };
+
+    private int id;
+
+    private Double subTotal;
+
+    private Double total;
+
+    private login.Usuario usuarioemail;
+
+    private java.util.Set ORM_shoppingCart_item = new java.util.HashSet();
 
     private void setId(int value) {
         this.id = value;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getORMID() {
@@ -64,28 +68,24 @@ public class ShoppingCart {
         setSubTotal(new Double(value));
     }
 
-    public Double getSubTotal() {
-        return subTotal;
-    }
-
     public void setSubTotal(Double value) {
         this.subTotal = value;
+    }
+
+    public Double getSubTotal() {
+        return subTotal;
     }
 
     public void setTotal(double value) {
         setTotal(new Double(value));
     }
 
-    public Double getTotal() {
-        return total;
-    }
-
     public void setTotal(Double value) {
         this.total = value;
     }
 
-    public login.Usuario getUsuarioemail() {
-        return usuarioemail;
+    public Double getTotal() {
+        return total;
     }
 
     public void setUsuarioemail(login.Usuario value) {
@@ -97,7 +97,7 @@ public class ShoppingCart {
         }
     }
 
-    private login.Usuario getORM_Usuarioemail() {
+    public login.Usuario getUsuarioemail() {
         return usuarioemail;
     }
 
@@ -108,13 +108,19 @@ public class ShoppingCart {
         this.usuarioemail = value;
     }
 
-    private java.util.Set getORM_ShoppingCart_item() {
-        return ORM_shoppingCart_item;
+    private login.Usuario getORM_Usuarioemail() {
+        return usuarioemail;
     }
 
     private void setORM_ShoppingCart_item(java.util.Set value) {
         this.ORM_shoppingCart_item = value;
     }
+
+    private java.util.Set getORM_ShoppingCart_item() {
+        return ORM_shoppingCart_item;
+    }
+
+    public final shoppingcart.ShoppingCart_itemSetCollection shoppingCart_item = new shoppingcart.ShoppingCart_itemSetCollection(this, _ormAdapter, login.ORMConstants.KEY_SHOPPINGCART_SHOPPINGCART_ITEM, login.ORMConstants.KEY_SHOPPINGCART_ITEM_SHOPPINGCART, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
 
     public String toString() {
         return String.valueOf(getId());

@@ -13,24 +13,35 @@
  */
 package productos;
 
-public class Producto {
-    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-        public java.util.Set getSet(int key) {
-            return this_getSet(key);
-        }
+import java.io.Serializable;
 
-        public void setOwner(Object owner, int key) {
-            this_setOwner(owner, key);
-        }
-
-    };
-    public final productos.ItemSetCollection item = new productos.ItemSetCollection(this, _ormAdapter, login.ORMConstants.KEY_PRODUCTO_ITEM, login.ORMConstants.KEY_ITEM_PRODUCTOS, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
-    private int id;
-    private Integer nombreProducto;
-    private productos.Categoria categorias;
-    private java.util.Set ORM_item = new java.util.HashSet();
-
+public class Producto implements Serializable {
     public Producto() {
+    }
+
+    public boolean equals(Object aObj) {
+        if (aObj == this)
+            return true;
+        if (!(aObj instanceof Producto))
+            return false;
+        Producto producto = (Producto) aObj;
+        if ((getNombreProducto() != null && !getNombreProducto().equals(producto.getNombreProducto())) || (getNombreProducto() == null && producto.getNombreProducto() != null))
+            return false;
+        if (getCategorias() == null) {
+            if (producto.getCategorias() != null)
+                return false;
+        } else if (!getCategorias().equals(producto.getCategorias()))
+            return false;
+        return true;
+    }
+
+    public int hashCode() {
+        int hashcode = 0;
+        hashcode = hashcode + (getNombreProducto() == null ? 0 : getNombreProducto().hashCode());
+        if (getCategorias() != null) {
+            hashcode = hashcode + (getCategorias().getORMID() == null ? 0 : getCategorias().getORMID().hashCode());
+        }
+        return hashcode;
     }
 
     private java.util.Set this_getSet(int key) {
@@ -47,32 +58,39 @@ public class Producto {
         }
     }
 
-    public int getId() {
-        return id;
+    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+        public java.util.Set getSet(int key) {
+            return this_getSet(key);
+        }
+
+        public void setOwner(Object owner, int key) {
+            this_setOwner(owner, key);
+        }
+
+    };
+
+    private String nombreProducto;
+
+    private productos.Categoria categorias;
+
+    private String categoriasId;
+
+    private void setCategoriasId(String value) {
+        this.categoriasId = value;
     }
 
-    private void setId(int value) {
-        this.id = value;
+    public String getCategoriasId() {
+        return categoriasId;
     }
 
-    public int getORMID() {
-        return getId();
-    }
+    private java.util.Set ORM_item = new java.util.HashSet();
 
-    public void setNombreProducto(int value) {
-        setNombreProducto(new Integer(value));
-    }
-
-    public Integer getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(Integer value) {
+    public void setNombreProducto(String value) {
         this.nombreProducto = value;
     }
 
-    public productos.Categoria getCategorias() {
-        return categorias;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
     public void setCategorias(productos.Categoria value) {
@@ -84,7 +102,7 @@ public class Producto {
         }
     }
 
-    private productos.Categoria getORM_Categorias() {
+    public productos.Categoria getCategorias() {
         return categorias;
     }
 
@@ -95,16 +113,22 @@ public class Producto {
         this.categorias = value;
     }
 
-    private java.util.Set getORM_Item() {
-        return ORM_item;
+    private productos.Categoria getORM_Categorias() {
+        return categorias;
     }
 
     private void setORM_Item(java.util.Set value) {
         this.ORM_item = value;
     }
 
+    private java.util.Set getORM_Item() {
+        return ORM_item;
+    }
+
+    public final productos.ItemSetCollection item = new productos.ItemSetCollection(this, _ormAdapter, login.ORMConstants.KEY_PRODUCTO_ITEM, login.ORMConstants.KEY_ITEM_PRODUCTOS, login.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
     public String toString() {
-        return String.valueOf(getId());
+        return String.valueOf(getNombreProducto() + " " + ((getCategorias() == null) ? "" : String.valueOf(getCategorias().getORMID())));
     }
 
 }

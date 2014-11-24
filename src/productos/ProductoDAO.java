@@ -20,76 +20,92 @@ import org.orm.PersistentSession;
 import java.util.List;
 
 public class ProductoDAO {
-    public static Producto loadProductoByORMID(int id) throws PersistentException {
+    public static Producto loadProductoByORMID(String nombreProducto, productos.Categoria categorias) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return loadProductoByORMID(session, id);
+            return loadProductoByORMID(session, nombreProducto, categorias);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto getProductoByORMID(int id) throws PersistentException {
+    public static Producto getProductoByORMID(String nombreProducto, productos.Categoria categorias) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return getProductoByORMID(session, id);
+            return getProductoByORMID(session, nombreProducto, categorias);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto loadProductoByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Producto loadProductoByORMID(String nombreProducto, productos.Categoria categorias, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return loadProductoByORMID(session, id, lockMode);
+            return loadProductoByORMID(session, nombreProducto, categorias, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto getProductoByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Producto getProductoByORMID(String nombreProducto, productos.Categoria categorias, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return getProductoByORMID(session, id, lockMode);
+            return getProductoByORMID(session, nombreProducto, categorias, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto loadProductoByORMID(PersistentSession session, int id) throws PersistentException {
+    public static Producto loadProductoByORMID(PersistentSession session, String nombreProducto, productos.Categoria categorias) throws PersistentException {
         try {
-            return (Producto) session.load(productos.Producto.class, new Integer(id));
+            Producto producto = new productos.Producto();
+            producto.setNombreProducto(nombreProducto);
+            producto.setORM_Categorias(categorias);
+
+            return (Producto) session.load(productos.Producto.class, producto);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto getProductoByORMID(PersistentSession session, int id) throws PersistentException {
+    public static Producto getProductoByORMID(PersistentSession session, String nombreProducto, productos.Categoria categorias) throws PersistentException {
         try {
-            return (Producto) session.get(productos.Producto.class, new Integer(id));
+            Producto producto = new productos.Producto();
+            producto.setNombreProducto(nombreProducto);
+            producto.setORM_Categorias(categorias);
+
+            return (Producto) session.get(productos.Producto.class, producto);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto loadProductoByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Producto loadProductoByORMID(PersistentSession session, String nombreProducto, productos.Categoria categorias, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
-            return (Producto) session.load(productos.Producto.class, new Integer(id), lockMode);
+            Producto producto = new productos.Producto();
+            producto.setNombreProducto(nombreProducto);
+            producto.setORM_Categorias(categorias);
+
+            return (Producto) session.load(productos.Producto.class, producto, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Producto getProductoByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Producto getProductoByORMID(PersistentSession session, String nombreProducto, productos.Categoria categorias, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
-            return (Producto) session.get(productos.Producto.class, new Integer(id), lockMode);
+            Producto producto = new productos.Producto();
+            producto.setNombreProducto(nombreProducto);
+            producto.setORM_Categorias(categorias);
+
+            return (Producto) session.get(productos.Producto.class, producto, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
@@ -300,9 +316,11 @@ public class ProductoDAO {
 
     public static boolean deleteAndDissociate(productos.Producto producto) throws PersistentException {
         try {
+            productos.Categoria categorias = producto.getCategorias();
             if (producto.getCategorias() != null) {
                 producto.getCategorias().producto.remove(producto);
             }
+            producto.setORM_Categorias(categorias);
 
             productos.Item[] lItems = producto.item.toArray();
             for (int i = 0; i < lItems.length; i++) {
@@ -317,9 +335,11 @@ public class ProductoDAO {
 
     public static boolean deleteAndDissociate(productos.Producto producto, org.orm.PersistentSession session) throws PersistentException {
         try {
+            productos.Categoria categorias = producto.getCategorias();
             if (producto.getCategorias() != null) {
                 producto.getCategorias().producto.remove(producto);
             }
+            producto.setORM_Categorias(categorias);
 
             productos.Item[] lItems = producto.item.toArray();
             for (int i = 0; i < lItems.length; i++) {

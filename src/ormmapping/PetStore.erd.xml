@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Model quotesql="1" tablecharset="UTF8" mysql_version="504" mssql_version="2005" derby_version="106" ingres_version="9">
+    <Entity name="Usuario">
+        <Column name="email">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>100</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="password">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="direccion">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="numeroTelefono">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="mascotaFavorita">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <Entity name="Categoria">
+        <Column name="nombreCategoria">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <Entity name="Producto">
+        <Column name="nombreProducto">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>assigned</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="CategorianombreCategoria">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>productos.Categoria.nombreCategoria</ReferencedColumn>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>assigned</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <Entity name="item">
+        <Column name="id">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>9</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="nombreItem">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="precio">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>9</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="ProductonombreProducto">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>productos.Producto.nombreProducto</ReferencedColumn>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="ProductoCategorianombreCategoria">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>productos.Producto.CategorianombreCategoria</ReferencedColumn>
+            <Type>27</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <Entity name="ShoppingCart">
+        <Column name="id">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>9</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="subTotal">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>6</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="total">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>6</Type>
+            <Length>10</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="Usuarioemail">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>login.Usuario.email</ReferencedColumn>
+            <Type>27</Type>
+            <Length>100</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <Entity name="ShoppingCart_item">
+        <Column name="ShoppingCartid">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>ShoppingCart.ShoppingCart.id</ReferencedColumn>
+            <Type>9</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>assigned</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="itemid">
+            <PrimaryKey>true</PrimaryKey>
+            <ForeignKey>true</ForeignKey>
+            <ReferencedColumn>productos.item.id</ReferencedColumn>
+            <Type>9</Type>
+            <Length>10</Length>
+            <Nullable>false</Nullable>
+            <IDGenerator>assigned</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+        <Column name="cantidad">
+            <PrimaryKey>false</PrimaryKey>
+            <ForeignKey>false</ForeignKey>
+            <Type>9</Type>
+            <Length>11</Length>
+            <Nullable>true</Nullable>
+            <IDGenerator>native</IDGenerator>
+            <Unique>false</Unique>
+            <Index>false</Index>
+            <UserTypes/>
+        </Column>
+    </Entity>
+    <ForeignKey name="hasProducts">
+        <ReferenceTable>Producto</ReferenceTable>
+        <ReferencedTable>Categoria</ReferencedTable>
+        <Columns>
+            <Column>CategorianombreCategoria</Column>
+        </Columns>
+        <RefColumns>
+            <Column>nombreCategoria</Column>
+        </RefColumns>
+    </ForeignKey>
+    <ForeignKey name="hasItems">
+        <ReferenceTable>item</ReferenceTable>
+        <ReferencedTable>Producto</ReferencedTable>
+        <Columns>
+            <Column>ProductonombreProducto</Column>
+            <Column>ProductoCategorianombreCategoria</Column>
+        </Columns>
+        <RefColumns>
+            <Column>nombreProducto</Column>
+            <Column>CategorianombreCategoria</Column>
+        </RefColumns>
+    </ForeignKey>
+    <ForeignKey name="hasShoppingCarts">
+        <ReferenceTable>ShoppingCart</ReferenceTable>
+        <ReferencedTable>Usuario</ReferencedTable>
+        <Columns>
+            <Column>Usuarioemail</Column>
+        </Columns>
+        <RefColumns>
+            <Column>email</Column>
+        </RefColumns>
+    </ForeignKey>
+    <ForeignKey name="FKShoppingCa250137">
+        <ReferenceTable>ShoppingCart_item</ReferenceTable>
+        <ReferencedTable>ShoppingCart</ReferencedTable>
+        <Columns>
+            <Column>ShoppingCartid</Column>
+        </Columns>
+        <RefColumns>
+            <Column>id</Column>
+        </RefColumns>
+    </ForeignKey>
+    <ForeignKey name="FKShoppingCa387268">
+        <ReferenceTable>ShoppingCart_item</ReferenceTable>
+        <ReferencedTable>item</ReferencedTable>
+        <Columns>
+            <Column>itemid</Column>
+        </Columns>
+        <RefColumns>
+            <Column>id</Column>
+        </RefColumns>
+    </ForeignKey>
+</Model>

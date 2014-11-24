@@ -18,37 +18,34 @@ import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMDetachedCriteria;
 import org.orm.criteria.AssociationExpression;
 import org.orm.criteria.CollectionExpression;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.StringExpression;
 
 import java.util.List;
 
 public class ProductoDetachedCriteria extends AbstractORMDetachedCriteria {
-    public final IntegerExpression id;
-    public final IntegerExpression nombreProducto;
-    public final IntegerExpression categoriasId;
+    public final StringExpression nombreProducto;
+    public final StringExpression categoriasId;
     public final AssociationExpression categorias;
     public final CollectionExpression item;
 
     public ProductoDetachedCriteria() {
         super(productos.Producto.class, productos.ProductoCriteria.class);
-        id = new IntegerExpression("id", this.getDetachedCriteria());
-        nombreProducto = new IntegerExpression("nombreProducto", this.getDetachedCriteria());
-        categoriasId = new IntegerExpression("categorias.id", this.getDetachedCriteria());
-        categorias = new AssociationExpression("categorias", this.getDetachedCriteria());
+        nombreProducto = new StringExpression("nombreProducto", this.getDetachedCriteria());
+        categoriasId = new StringExpression("ORM_Categorias.nombreCategoria", this.getDetachedCriteria());
+        categorias = new AssociationExpression("ORM_Categorias", this.getDetachedCriteria());
         item = new CollectionExpression("ORM_Item", this.getDetachedCriteria());
     }
 
     public ProductoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
         super(aDetachedCriteria, productos.ProductoCriteria.class);
-        id = new IntegerExpression("id", this.getDetachedCriteria());
-        nombreProducto = new IntegerExpression("nombreProducto", this.getDetachedCriteria());
-        categoriasId = new IntegerExpression("categorias.id", this.getDetachedCriteria());
-        categorias = new AssociationExpression("categorias", this.getDetachedCriteria());
+        nombreProducto = new StringExpression("nombreProducto", this.getDetachedCriteria());
+        categoriasId = new StringExpression("ORM_Categorias.nombreCategoria", this.getDetachedCriteria());
+        categorias = new AssociationExpression("ORM_Categorias", this.getDetachedCriteria());
         item = new CollectionExpression("ORM_Item", this.getDetachedCriteria());
     }
 
     public CategoriaDetachedCriteria createCategoriasCriteria() {
-        return new CategoriaDetachedCriteria(createCriteria("categorias"));
+        return new CategoriaDetachedCriteria(createCriteria("ORM_Categorias"));
     }
 
     public ItemDetachedCriteria createItemCriteria() {

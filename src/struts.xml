@@ -19,6 +19,23 @@
             <result name="error">/error.jsp</result>
         </action>
 
+        <action name="listProductsFromCategory" class="servletsPetStore.ServletProductos"
+                method="listProductsFromCategory">
+            <result name="success">/ListaProductos.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="listItemsFromProduct" class="servletsPetStore.ServletProductos" method="listItemsFromProduct">
+            <result name="success">/ListaItems.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findProductByName" class="servletsPetStore.ServletProductos" method="findProductByName">
+            <result name="success">/ListaProductos.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+
     </package>
 
 </struts>

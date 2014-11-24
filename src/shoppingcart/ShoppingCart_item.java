@@ -16,18 +16,6 @@ package shoppingcart;
 import java.io.Serializable;
 
 public class ShoppingCart_item implements Serializable {
-    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-        public void setOwner(Object owner, int key) {
-            this_setOwner(owner, key);
-        }
-
-    };
-    private shoppingcart.ShoppingCart shoppingCart;
-    private int shoppingCartId;
-    private productos.Item item;
-    private int itemId;
-    private Integer cantidad;
-
     public ShoppingCart_item() {
     }
 
@@ -69,36 +57,49 @@ public class ShoppingCart_item implements Serializable {
         }
     }
 
+    org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+        public void setOwner(Object owner, int key) {
+            this_setOwner(owner, key);
+        }
+
+    };
+
+    private shoppingcart.ShoppingCart shoppingCart;
+
+    private int shoppingCartId;
+
+    private void setShoppingCartId(int value) {
+        this.shoppingCartId = value;
+    }
+
     public int getShoppingCartId() {
         return shoppingCartId;
     }
 
-    private void setShoppingCartId(int value) {
-        this.shoppingCartId = value;
+    private productos.Item item;
+
+    private int itemId;
+
+    private void setItemId(int value) {
+        this.itemId = value;
     }
 
     public int getItemId() {
         return itemId;
     }
 
-    private void setItemId(int value) {
-        this.itemId = value;
-    }
+    private Integer cantidad;
 
     public void setCantidad(int value) {
         setCantidad(new Integer(value));
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
     }
 
     public void setCantidad(Integer value) {
         this.cantidad = value;
     }
 
-    public shoppingcart.ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
     public void setShoppingCart(shoppingcart.ShoppingCart value) {
@@ -110,7 +111,7 @@ public class ShoppingCart_item implements Serializable {
         }
     }
 
-    private shoppingcart.ShoppingCart getORM_ShoppingCart() {
+    public shoppingcart.ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
@@ -121,8 +122,8 @@ public class ShoppingCart_item implements Serializable {
         this.shoppingCart = value;
     }
 
-    public productos.Item getItem() {
-        return item;
+    private shoppingcart.ShoppingCart getORM_ShoppingCart() {
+        return shoppingCart;
     }
 
     public void setItem(productos.Item value) {
@@ -134,7 +135,7 @@ public class ShoppingCart_item implements Serializable {
         }
     }
 
-    private productos.Item getORM_Item() {
+    public productos.Item getItem() {
         return item;
     }
 
@@ -143,6 +144,10 @@ public class ShoppingCart_item implements Serializable {
      */
     public void setORM_Item(productos.Item value) {
         this.item = value;
+    }
+
+    private productos.Item getORM_Item() {
+        return item;
     }
 
     public String toString() {

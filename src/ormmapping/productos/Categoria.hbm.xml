@@ -7,14 +7,12 @@ License Type: Evaluation
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="productos.Categoria" table="Categoria" lazy="false">
-        <id name="id" column="id" type="integer" unsaved-value="0">
+        <id name="nombreCategoria" column="nombreCategoria" type="string">
             <generator class="native">
             </generator>
         </id>
-        <property name="nombreCategoria" column="nombreCategoria" type="integer" length="10" not-null="false"
-                  lazy="false"/>
         <set name="ORM_Producto" lazy="true" cascade="save-update,lock" inverse="true">
-            <key column="Categoriasid" not-null="true"/>
+            <key column="CategorianombreCategoria" not-null="true"/>
             <one-to-many class="productos.Producto"/>
         </set>
     </class>

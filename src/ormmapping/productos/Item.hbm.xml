@@ -13,8 +13,10 @@ License Type: Evaluation
         </id>
         <property name="nombreItem" column="nombreItem" type="string" length="10" not-null="false" lazy="false"/>
         <property name="precio" column="precio" type="integer" length="10" not-null="false" lazy="false"/>
-        <many-to-one name="productos" cascade="lock" column="Productosid" class="productos.Producto" not-null="true"
-                     lazy="proxy" access="field">
+        <many-to-one name="productos" cascade="lock" class="productos.Producto" not-null="false" lazy="proxy"
+                     access="field">
+            <column name="ProductonombreProducto"/>
+            <column name="ProductoCategorianombreCategoria"/>
         </many-to-one>
         <set name="ORM_ShoppingCart_item" lazy="true" cascade="save-update,lock" inverse="true">
             <key column="itemid" not-null="true"/>

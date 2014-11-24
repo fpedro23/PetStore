@@ -20,76 +20,76 @@ import org.orm.PersistentSession;
 import java.util.List;
 
 public class CategoriaDAO {
-    public static Categoria loadCategoriaByORMID(int id) throws PersistentException {
+    public static Categoria loadCategoriaByORMID(String nombreCategoria) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return loadCategoriaByORMID(session, id);
+            return loadCategoriaByORMID(session, nombreCategoria);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria getCategoriaByORMID(int id) throws PersistentException {
+    public static Categoria getCategoriaByORMID(String nombreCategoria) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return getCategoriaByORMID(session, id);
+            return getCategoriaByORMID(session, nombreCategoria);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria loadCategoriaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Categoria loadCategoriaByORMID(String nombreCategoria, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return loadCategoriaByORMID(session, id, lockMode);
+            return loadCategoriaByORMID(session, nombreCategoria, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria getCategoriaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Categoria getCategoriaByORMID(String nombreCategoria, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
             PersistentSession session = login.PetStorePersistentManager.instance().getSession();
-            return getCategoriaByORMID(session, id, lockMode);
+            return getCategoriaByORMID(session, nombreCategoria, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria loadCategoriaByORMID(PersistentSession session, int id) throws PersistentException {
+    public static Categoria loadCategoriaByORMID(PersistentSession session, String nombreCategoria) throws PersistentException {
         try {
-            return (Categoria) session.load(productos.Categoria.class, new Integer(id));
+            return (Categoria) session.load(productos.Categoria.class, nombreCategoria);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria getCategoriaByORMID(PersistentSession session, int id) throws PersistentException {
+    public static Categoria getCategoriaByORMID(PersistentSession session, String nombreCategoria) throws PersistentException {
         try {
-            return (Categoria) session.get(productos.Categoria.class, new Integer(id));
+            return (Categoria) session.get(productos.Categoria.class, nombreCategoria);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria loadCategoriaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Categoria loadCategoriaByORMID(PersistentSession session, String nombreCategoria, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
-            return (Categoria) session.load(productos.Categoria.class, new Integer(id), lockMode);
+            return (Categoria) session.load(productos.Categoria.class, nombreCategoria, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);
         }
     }
 
-    public static Categoria getCategoriaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+    public static Categoria getCategoriaByORMID(PersistentSession session, String nombreCategoria, org.hibernate.LockMode lockMode) throws PersistentException {
         try {
-            return (Categoria) session.get(productos.Categoria.class, new Integer(id), lockMode);
+            return (Categoria) session.get(productos.Categoria.class, nombreCategoria, lockMode);
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistentException(e);

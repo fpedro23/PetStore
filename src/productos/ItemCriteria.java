@@ -22,7 +22,6 @@ public class ItemCriteria extends AbstractORMCriteria {
     public final IntegerExpression id;
     public final StringExpression nombreItem;
     public final IntegerExpression precio;
-    public final IntegerExpression productosId;
     public final AssociationExpression productos;
     public final CollectionExpression shoppingCart_item;
 
@@ -31,7 +30,6 @@ public class ItemCriteria extends AbstractORMCriteria {
         id = new IntegerExpression("id", this);
         nombreItem = new StringExpression("nombreItem", this);
         precio = new IntegerExpression("precio", this);
-        productosId = new IntegerExpression("productos.id", this);
         productos = new AssociationExpression("productos", this);
         shoppingCart_item = new CollectionExpression("ORM_ShoppingCart_item", this);
     }

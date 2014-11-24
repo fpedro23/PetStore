@@ -23,7 +23,6 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
     public final IntegerExpression id;
     public final StringExpression nombreItem;
     public final IntegerExpression precio;
-    public final IntegerExpression productosId;
     public final AssociationExpression productos;
     public final CollectionExpression shoppingCart_item;
 
@@ -32,7 +31,6 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
         id = new IntegerExpression("id", this.getDetachedCriteria());
         nombreItem = new StringExpression("nombreItem", this.getDetachedCriteria());
         precio = new IntegerExpression("precio", this.getDetachedCriteria());
-        productosId = new IntegerExpression("productos.id", this.getDetachedCriteria());
         productos = new AssociationExpression("productos", this.getDetachedCriteria());
         shoppingCart_item = new CollectionExpression("ORM_ShoppingCart_item", this.getDetachedCriteria());
     }
@@ -42,7 +40,6 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
         id = new IntegerExpression("id", this.getDetachedCriteria());
         nombreItem = new StringExpression("nombreItem", this.getDetachedCriteria());
         precio = new IntegerExpression("precio", this.getDetachedCriteria());
-        productosId = new IntegerExpression("productos.id", this.getDetachedCriteria());
         productos = new AssociationExpression("productos", this.getDetachedCriteria());
         shoppingCart_item = new CollectionExpression("ORM_ShoppingCart_item", this.getDetachedCriteria());
     }

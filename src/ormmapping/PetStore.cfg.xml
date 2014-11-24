@@ -25,11 +25,11 @@ License Type: Evaluation
         <property name="show_sql">false</property>
         <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
         <!-- mapping files -->
-        <mapping resource="Usuario.hbm.xml"/>
-        <mapping resource="Categoria.hbm.xml"/>
-        <mapping resource="Item.hbm.xml"/>
-        <mapping resource="Producto.hbm.xml"/>
-        <mapping resource="ShoppingCart.hbm.xml"/>
-        <mapping resource="ShoppingCart_item.hbm.xml"/>
+        <mapping resource="ormmapping/login/Usuario.hbm.xml"/>
+        <mapping resource="ormmapping/productos/Categoria.hbm.xml"/>
+        <mapping resource="ormmapping/productos/Item.hbm.xml"/>
+        <mapping resource="ormmapping/productos/Producto.hbm.xml"/>
+        <mapping resource="ormmapping/shoppingcart/ShoppingCart.hbm.xml"/>
+        <mapping resource="ormmapping/shoppingcart/ShoppingCart_item.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

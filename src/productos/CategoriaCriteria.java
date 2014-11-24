@@ -18,17 +18,15 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.CollectionExpression;
-import org.orm.criteria.IntegerExpression;
+import org.orm.criteria.StringExpression;
 
 public class CategoriaCriteria extends AbstractORMCriteria {
-    public final IntegerExpression id;
-    public final IntegerExpression nombreCategoria;
+    public final StringExpression nombreCategoria;
     public final CollectionExpression producto;
 
     public CategoriaCriteria(Criteria criteria) {
         super(criteria);
-        id = new IntegerExpression("id", this);
-        nombreCategoria = new IntegerExpression("nombreCategoria", this);
+        nombreCategoria = new StringExpression("nombreCategoria", this);
         producto = new CollectionExpression("ORM_Producto", this);
     }
 
