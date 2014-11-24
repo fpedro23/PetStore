@@ -5,8 +5,8 @@
   Time: 23:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="productos.Item" errorPage="" %>
+
 
 <html>
 <head>
@@ -15,8 +15,11 @@
 <body>
 <%
     Item item = (Item) request.getAttribute("item");
-
-    out.println(item.getNombreItem());
+    out.println("Nombre Item: " + item.getNombreItem());
+    out.println("ID Item:     " + item.getId());
+    out.println("Precio :     " + item.getPrecio());
 %>
+
+
 </body>
 </html>

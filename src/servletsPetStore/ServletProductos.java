@@ -20,6 +20,7 @@ public class ServletProductos extends ActionSupport {
     public String mensajeResultado;
     public int idItem;
 
+
     public String listCategories() throws PersistentException {
         ProductosAD productosAD;
 

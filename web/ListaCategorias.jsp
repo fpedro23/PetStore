@@ -20,8 +20,8 @@
 
     for (int i = 0; i < listaCategorias.length; i++) {
         out.println(listaCategorias[i].getNombreCategoria());
+
     }
 %>
-
 </body>
 </html>

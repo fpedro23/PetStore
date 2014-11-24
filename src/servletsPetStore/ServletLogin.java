@@ -2,12 +2,15 @@ package servletsPetStore;
 
 import com.opensymphony.xwork2.ActionSupport;
 import login.LoginAD;
+import org.apache.struts2.interceptor.SessionAware;
 import org.orm.PersistentException;
+
+import java.util.Map;
 
 /**
  * Created by Pedro on 22/11/14.
  */
-public class ServletLogin extends ActionSupport {
+public class ServletLogin extends ActionSupport implements SessionAware {
 
     private String email;
     private String password;
@@ -17,6 +20,13 @@ public class ServletLogin extends ActionSupport {
     public String mensajeResultado;
 
     private LoginAD loginAD;
+    private Map<String, Object> sessionMap;
+
+    @Override
+    public void setSession(Map<String, Object> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+
 
     public String doLogin() throws PersistentException {
         loginAD = new LoginAD();
@@ -24,12 +34,21 @@ public class ServletLogin extends ActionSupport {
 
         if (resultado) {
             mensajeResultado = "Login Exitoso";
+            sessionMap.put("nombreUsuario", email);
             return "success";
         } else {
             mensajeResultado = "Login Fallido";
             return "error";
         }
 
+    }
+
+    public String logout() {
+        // remove userName from the session
+        if (sessionMap.containsKey("nombreUsuario")) {
+            sessionMap.remove("nombreUsuario");
+        }
+        return SUCCESS;
     }
 
     public String registerUser() throws PersistentException {

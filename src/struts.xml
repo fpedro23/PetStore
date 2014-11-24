@@ -10,7 +10,12 @@
     <package name="Pet Store" namespace="/" extends="struts-default">
 
         <action name="doLogin" class="servletsPetStore.ServletLogin" method="doLogin">
-            <result name="success">/index.jsp</result>
+            <result name="success">/Welcome.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="logout" class="servletsPetStore.ServletLogin" method="logout">
+        <result name="success">/index.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
 
@@ -42,6 +47,11 @@
 
         <action name="findItemByID" class="servletsPetStore.ServletProductos" method="findItemByID">
             <result name="success">/DetalleItem.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="addItemToCart" class="servletsPetStore.ServletShoppingCart" method="addItemToCart">
+        <result name="success">/DetalleItem.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
 
