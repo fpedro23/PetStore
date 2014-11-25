@@ -1,6 +1,5 @@
 <component name="libraryTable">
-  <library name="Struts 2-2.3.16.3" type="struts2">
-    <properties version="2.3.16.3" />
+  <library name="Struts 2-2.3.16.3">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/struts2-core.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/freemarker.jar!/" />
@@ -13,6 +12,7 @@
       <root url="jar://$PROJECT_DIR$/lib/asm-commons.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/asm-tree.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javassist.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/orm.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

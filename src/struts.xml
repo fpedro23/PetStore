@@ -10,11 +10,16 @@
     <package name="Pet Store" namespace="/" extends="struts-default">
 
         <action name="doLogin" class="servletsPetStore.ServletLogin" method="doLogin">
-            <result name="success">/index.jsp</result>
+            <result name="success">/Welcome.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
 
-        <action name="regUser" class="servletsPetStore.ServletRegister" method="regUser">
+        <action name="logout" class="servletsPetStore.ServletLogin" method="logout">
+        <result name="success">/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="registerUser" class="servletsPetStore.ServletLogin" method="registerUser">
             <result name="success">/index.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
@@ -23,6 +28,33 @@
             <result name="success">/ListaCategorias.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+
+        <action name="listProductsFromCategory" class="servletsPetStore.ServletProductos"
+                method="listProductsFromCategory">
+            <result name="success">/ListaProductos.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="listItemsFromProduct" class="servletsPetStore.ServletProductos" method="listItemsFromProduct">
+            <result name="success">/ListaItems.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findProductByName" class="servletsPetStore.ServletProductos" method="findProductByName">
+            <result name="success">/ListaProductos.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="findItemByID" class="servletsPetStore.ServletProductos" method="findItemByID">
+            <result name="success">/DetalleItem.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="addItemToCart" class="servletsPetStore.ServletShoppingCart" method="addItemToCart">
+        <result name="success">/DetalleItem.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
 
     </package>
 

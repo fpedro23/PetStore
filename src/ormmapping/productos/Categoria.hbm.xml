@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="productos.Categoria" table="Categoria" lazy="false">
+        <id name="nombreCategoria" column="nombreCategoria" type="string">
+            <generator class="native">
+            </generator>
+        </id>
+        <set name="ORM_Producto" lazy="true" cascade="save-update,lock" inverse="true">
+            <key column="CategorianombreCategoria" not-null="true"/>
+            <one-to-many class="productos.Producto"/>
+        </set>
+    </class>
+</hibernate-mapping>
