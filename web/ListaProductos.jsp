@@ -79,7 +79,7 @@
                                 %>
                                 <p>
                                 <form action="listItemsFromProduct" name="listItemsFromProduct">
-                                    <input type="hidden" name="nombreCategoria" value="#nombreCategoria"/>
+                                    <input type="hidden" name="nombreCategoria" value="<%out.println(listaProductos[i].getCategorias().getNombreCategoria());%>"/>
                                     <input type="hidden" name="nombreProducto" value="<%out.println(listaProductos[i].getNombreProducto());%>" />
                                     <ul class="buttons">
                                         <li><input type="submit" value="<%out.println(listaProductos[i].getNombreProducto());%>"/></li>

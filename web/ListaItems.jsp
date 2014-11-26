@@ -70,6 +70,9 @@
                 <div class="sidebar">
                     <section>
                         <table style="width:100%" border="2">
+                            <header>
+                                A&ntilde;adelo a tu carrito de compras haciendo click sobre &eacute;l.
+                            </header>
                             <tr>
                                 <%
                                     Item[] listaItems = (Item[]) request.getAttribute("listaItems");
