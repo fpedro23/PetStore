@@ -66,7 +66,7 @@
         <!-- Content -->
         <div class="content">
             <form action="addItemToCart" name="addItemToCart">
-                <input type="hidden" value="#idItem" />
+                <input type="hidden" value="<%item.getId()%>" />
                 <section>
                     <p><%out.println("Nombre Item: " + item.getNombreItem());%></p>
                     <p><%out.println("ID Item:     " + item.getId());%></p>
