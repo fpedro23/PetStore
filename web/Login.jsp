@@ -42,14 +42,10 @@
             <li class="submenu">
                 <a href="">Men&uacute;</a>
                 <ul>
-                    <!--
-                    <li><a href="ListaCategorias.jsp">Lista Categor&iacute;s</a></li>
-                    <li><a href="ListaItems.jsp">Lista Items</a></li>
-                    <li><a href="ListaProductos.jsp">Lista Productos</a></li>
-                    -->
                     <li><a href="RegisterNewUser.jsp">Registro</a></li>
                 </ul>
             </li>
+            <li class="current"><a href="ShoppingCartProducts.jsp">Carrito de Compras</a></li>
             <li><a href="Login.jsp" class="button special">Login</a></li>
         </ul>
     </nav>
@@ -60,7 +56,7 @@
     <div class="inner">
 
         <header>
-            <h2>PET STORE | Login</h2>
+            <h2>Login</h2>
         </header>
         <form action="doLogin" name="login" id="login">
         <p>

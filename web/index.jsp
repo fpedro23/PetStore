@@ -41,14 +41,10 @@
             <li class="submenu">
                 <a href="">Men&uacute;</a>
                 <ul>
-                    <!--
-                    <li><a href="ListaCategorias.jsp">Lista Categor&iacute;s</a></li>
-                    <li><a href="ListaItems.jsp">Lista Items</a></li>
-                    <li><a href="ListaProductos.jsp">Lista Productos</a></li>
-                    -->
                     <li><a href="RegisterNewUser.jsp">Registro</a></li>
                 </ul>
             </li>
+            <li class="current"><a href="ShoppingCartProducts.jsp">Carrito de Compras</a></li>
             <li><a href="Login.jsp" class="button special">Login</a></li>
         </ul>
     </nav>
@@ -208,9 +204,8 @@
                         <p>
                             Personalice su producto. D&iacute;ganos que es lo que busca de que clase y lo encontraremos para usted.
                         </p>
-                        <form action="listItemsFromProduct" id="listItemsFromProduct" name="listItemsFromProduct">
-                            <p><input type="text" name="nombreProducto" placeholder="Producto" /></p>
-                            <p><input type="text" name="nombreCategoria" placeholder="Categor&iacute;a" /></p>
+                        <form action="findItemByID" id="findItemByID" name="findItemByID">
+                            <p><input type="text" name="idItem" placeholder="Item" /></p>
                             <footer>
                                 <ul class="buttons">
                                     <li><input type="submit" value="Busca Item"/></li>

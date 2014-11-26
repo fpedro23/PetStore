@@ -43,14 +43,10 @@
             <li class="submenu">
                 <a href="">Men&uacute;</a>
                 <ul>
-                    <!--
-                    <li><a href="ListaCategorias.jsp">Lista Categor&iacute;s</a></li>
-                    <li><a href="ListaItems.jsp">Lista Items</a></li>
-                    <li><a href="ListaProductos.jsp">Lista Productos</a></li>
-                    -->
                     <li><a href="RegisterNewUser.jsp">Registro</a></li>
                 </ul>
             </li>
+            <li class="current"><a href="ShoppingCartProducts.jsp">Carrito de Compras</a></li>
             <li><a href="Login.jsp" class="button special">Login</a></li>
         </ul>
     </nav>
@@ -65,32 +61,49 @@
     </header>
 
     <!-- One -->
-    <section class="wrapper style4 container">
+    <section class="wrapper style4 container" id="itemsbox">
 
-        <!-- Content -->
-        <div class="content">
-            <section>
-                <table style="width:100%" border="2">
-                    <tr>
-                        <%
-                            Item[] listaItems = (Item[]) request.getAttribute("listaItems");
+        <div class="row 150%">
+            <div class="4u 12u(2)">
 
-                            for (int i = 0; i < listaItems.length; i++) {
-                        %>
-                        <td>
-                            <%
-                                out.println(listaItems[i].getNombreItem());
-                            %>
-                        </td>
-                        <%
-                            }
-                        %>
-                    </tr>
-                </table>
-                <a href="#" class="image featured"><img src="images/kitten.jpg" style="width: 100px;" alt="" /></a>
-            </section>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <table style="width:100%" border="2">
+                            <tr>
+                                <%
+                                    Item[] listaItems = (Item[]) request.getAttribute("listaItems");
+
+                                    for (int i = 0; i < listaItems.length; i++) {
+                                %>
+                                <p>
+                                <form action="addItemToCart" name="addItemToCart">
+                                    <input type="hidden" name="itemID" value="<%out.println(listaItems[i].getNombreItem());%>" />
+                                    <ul class="buttons">
+                                        <li><input type="submit" value="<%out.println(listaItems[i].getNombreItem());%>"/></li>
+                                    </ul>
+                                </form>
+                                </p>
+                                <%
+                                    }
+                                %>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u 12u(2) important(2)">
+
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <a href="#" class="image featured"><img src="images/tortugas.jpg" alt="" /></a>
+                    </section>
+                </div>
+
+            </div>
         </div>
-
     </section>
 
 </article>

@@ -31,6 +31,7 @@
     </noscript>
     <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+
 </head>
 <body class="no-sidebar">
 
@@ -43,14 +44,10 @@
             <li class="submenu">
                 <a href="">Men&uacute;</a>
                 <ul>
-                    <!--
-                    <li><a href="ListaCategorias.jsp">Lista Categor&iacute;s</a></li>
-                    <li><a href="ListaItems.jsp">Lista Items</a></li>
-                    <li><a href="ListaProductos.jsp">Lista Productos</a></li>
-                    -->
                     <li><a href="RegisterNewUser.jsp">Registro</a></li>
                 </ul>
             </li>
+            <li class="current"><a href="ShoppingCartProducts.jsp">Carrito de Compras</a></li>
             <li><a href="Login.jsp" class="button special">Login</a></li>
         </ul>
     </nav>
@@ -65,34 +62,51 @@
     </header>
 
     <!-- One -->
-    <section class="wrapper style4 container">
+    <section class="wrapper style4 container" id="itemsbox">
 
-        <!-- Content -->
-        <div class="content">
-            <section>
-                <table style="width:100%" border="2">
-                    <tr>
-                        <%
-                            Producto[] listaProductos = (Producto[]) request.getAttribute("listaProductos");
+        <div class="row 150%">
+            <div class="4u 12u(2)">
 
-                            for (int i = 0; i < listaProductos.length; i++) {
-                        %>
-                        <td>
-                            <%
-                                out.println(listaProductos[i].getNombreProducto());
-                            %>
-                        </td>
-                        <%
-                            }
-                        %>
-                    </tr>
-                </table>
-                <a href="#" class="image featured"><img src="images/kitten.jpg" style="width: 100px;" alt="" /></a>
-            </section>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <section>
+                        <table style="width:100%" border="2">
+                            <tr>
+                                <%
+                                    Producto[] listaProductos = (Producto[]) request.getAttribute("listaProductos");
+
+                                    for (int i = 0; i < listaProductos.length; i++) {
+                                %>
+                                <p>
+                                <form action="listItemsFromProduct" name="listItemsFromProduct">
+                                    <input type="hidden" name="nombreCategoria" value="#nombreCategoria"/>
+                                    <input type="hidden" name="nombreProducto" value="<%out.println(listaProductos[i].getNombreProducto());%>" />
+                                    <ul class="buttons">
+                                        <li><input type="submit" value="<%out.println(listaProductos[i].getNombreProducto());%>"/></li>
+                                    </ul>
+                                </form>
+                                </p>
+                                <%
+                                    }
+                                %>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u 12u(2) important(2)">
+
+                <!-- Content -->
+                <div class="content">
+                    <section>
+                        <a href="#" class="image featured"><img src="images/hurones.jpg" alt="" /></a>
+                    </section>
+                </div>
+
+            </div>
         </div>
-
     </section>
-
 </article>
 
 <!-- Footer -->
