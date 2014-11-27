@@ -1,10 +1,12 @@
 package servletsPetStore;
 
 import com.opensymphony.xwork2.ActionSupport;
+import login.UsuarioDAO;
 import org.apache.struts2.interceptor.SessionAware;
 import org.orm.PersistentException;
 import productos.Item;
 import productos.ItemDAO;
+import productos.ProductosAD;
 import shoppingcart.ShoppingCart;
 import shoppingcart.ShoppingCart_item;
 
@@ -41,6 +43,25 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
 
 
         return "success";
+    }
+
+    public String placeOrder() throws PersistentException {
+        ShoppingCart cart;
+        cart = (ShoppingCart) sessionMap.get("cart");
+        ProductosAD productosAD;
+
+        if (sessionMap.containsKey("nombreUsuario")) {
+            String nombreUsuario = (String)sessionMap.get("nombreUsuario");
+            System.out.println("Nombre de usuario para carro: "+nombreUsuario);
+            cart.setUsuarioemail(UsuarioDAO.getUsuarioByORMID(nombreUsuario));
+            productosAD = new ProductosAD();
+            productosAD.placeOrder(cart);
+            return "success";
+        }else{
+            return "needLogin";
+        }
+
+
     }
 
 

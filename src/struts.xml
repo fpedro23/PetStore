@@ -55,6 +55,12 @@
             <result name="error">/error.jsp</result>
         </action>
 
+        <action name="placeOrder" class="servletsPetStore.ServletShoppingCart" method="placeOrder">
+            <result name="success">/Welcome.jsp</result>
+            <result name="needLogin">/Login.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
 
     </package>
 

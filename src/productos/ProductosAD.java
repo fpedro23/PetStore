@@ -1,6 +1,8 @@
 package productos;
 
 import org.orm.PersistentException;
+import shoppingcart.ShoppingCart;
+import shoppingcart.ShoppingCartDAO;
 
 /**
  * Created by Pedro on 23/11/14.
@@ -81,6 +83,10 @@ public class ProductosAD {
     public Item findItem(int idItem) throws PersistentException {
         Item item = ItemDAO.getItemByORMID(idItem);
         return item;
+    }
+
+    public void placeOrder(ShoppingCart cart) throws PersistentException {
+        ShoppingCartDAO.save(cart);
     }
 
 }
