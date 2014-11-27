@@ -5,7 +5,6 @@
   Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="productos.Item" errorPage="" %>
 
 <!DOCTYPE HTML>
@@ -81,10 +80,13 @@
                                 %>
                                 <p>
                                 <form action="addItemToCart" name="addItemToCart">
-                                    <input type="hidden" name="itemID" value="<%out.println(listaItems[i].getNombreItem());%>" />
+                                    <input type="hidden" name="itemID" value="<%out.print(listaItems[i].getId());%>" />
                                     <ul class="buttons">
-                                        <li><input type="submit" value="<%out.println(listaItems[i].getNombreItem());%>"/></li>
+                                        <li><input type="submit" value="<%out.print(listaItems[i].getNombreItem());%>"/></li>
                                     </ul>
+                                <ul class="buttons">
+                                    <li><input type="submit" value="<%out.print("Add to Cart");%>"/></li>
+                                </ul>
                                 </form>
                                 </p>
                                 <%

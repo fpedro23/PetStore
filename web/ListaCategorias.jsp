@@ -79,9 +79,16 @@
                                 %>
                                 <p>
                                 <form action="listProductsFromCategory" name="listProductsFromCategory">
-                                    <input type="hidden" name="nombreCategoria" value="<%out.println(listaCategorias[i].getNombreCategoria());%>" />
+                                    <input type="hidden" name="nombreCategoria" value="<%
+                                     String nombreCategoria = listaCategorias[i].getNombreCategoria();
+                                     System.out.println(nombreCategoria);
+                                     nombreCategoria.replaceAll("[\n\r]", "");
+                                     System.out.println(nombreCategoria);
+                                     out.print(nombreCategoria);
+
+                                     %>" />
                                     <ul class="buttons">
-                                        <li><input type="submit" value="<%out.println(listaCategorias[i].getNombreCategoria()); %>"/></li>
+                                        <li> <input type="submit" value="<%out.println(listaCategorias[i].getNombreCategoria()); %>"/> </li>
                                     </ul>
                                 </form>
                                 </p>

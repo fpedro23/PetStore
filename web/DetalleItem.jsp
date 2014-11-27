@@ -65,17 +65,12 @@
 
         <!-- Content -->
         <div class="content">
-            <form action="addItemToCart" name="addItemToCart">
-                <input type="hidden" value="<%item.getId()%>" />
+                <input type="hidden" value="<%item.getId();%>" />
                 <section>
-                    <p><%out.println("Nombre Item: " + item.getNombreItem());%></p>
-                    <p><%out.println("ID Item:     " + item.getId());%></p>
-                    <p><%out.println("Precio :     " + item.getPrecio());%></p>
+                    <p><%out.print("Nombre Item: " + item.getNombreItem());%></p>
+                    <p><%out.print("ID Item:     " + item.getId());%></p>
+                    <p><%out.print("Precio :     " + item.getPrecio());%></p>
                 </section>
-                <footer>
-                    <input type="submit" value="A&ntilde;adir a carrito"/>
-                </footer>
-            </form>
         </div>
 
     </section>

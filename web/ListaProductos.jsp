@@ -5,7 +5,6 @@
   Time: 21:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="productos.Producto" errorPage="" %>
 
 <!DOCTYPE HTML>
@@ -79,8 +78,8 @@
                                 %>
                                 <p>
                                 <form action="listItemsFromProduct" name="listItemsFromProduct">
-                                    <input type="hidden" name="nombreCategoria" value="<%out.println(listaProductos[i].getCategorias().getNombreCategoria());%>"/>
-                                    <input type="hidden" name="nombreProducto" value="<%out.println(listaProductos[i].getNombreProducto());%>" />
+                                    <input type="hidden" name="nombreCategoria" value="<%out.print(listaProductos[i].getCategorias().getNombreCategoria());%>"/>
+                                    <input type="hidden" name="nombreProducto" value="<%out.print(listaProductos[i].getNombreProducto());%>" />
                                     <ul class="buttons">
                                         <li><input type="submit" value="<%out.println(listaProductos[i].getNombreProducto());%>"/></li>
                                     </ul>
