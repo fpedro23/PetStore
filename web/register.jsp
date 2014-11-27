@@ -1,16 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Pedro
-  Date: 22/11/14
-  Time: 12:02
+  User: paoviquez
+  Date: 23/11/14
+  Time: 9:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Pet Store | Error</title>
+    <title>Pet Store | Registro</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
@@ -34,7 +33,7 @@
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="css/ie/v9.css"/><![endif]-->
 </head>
-<body class="index">
+<body class="contact">
 
 <!-- Header -->
 <header id="header" class="alt">
@@ -59,35 +58,68 @@
     </nav>
 </header>
 
-<!-- Banner -->
-<section id="banner">
-    <div class="inner">
+<!-- Main -->
+<article id="main">
 
-        <header>
-            <h2>Error!</h2>
-        </header>
-        <p>
-            <%
-                String mensajeResultado = (String) request.getAttribute("mensajeResultado");
+    <header class="special container">
+        <span class="icon fa-envelope"></span>
 
-                out.println(mensajeResultado);
-            %>
-        </p>
-        <footer>
-            <ul class="buttons vertical">
-                <li><a href="index.jsp"><< Regresar</a></li>
-            </ul>
-        </footer>
-    </div>
+        <h2>Reg&iacute;strate con nosotros</h2>
 
-</section>
+        <p>Llene el siguiente formulario para unirte a nuestra comunidad</p>
+    </header>
+
+    <!-- One -->
+    <section class="wrapper style4 special container 75%">
+
+        <!-- Content -->
+        <div class="content">
+            <form action="regUser" name="registerUser" id="registerUser">
+                <div class="row 50%">
+                    <div class="6u 12u(3)">
+                        <input type="email" id="email" name="email" placeholder="E-mail"/>
+                    </div>
+                    <div class="6u 12u(3)">
+                        <input type="text" id="password" name="password" placeholder="Contrase&ntilde;a"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input type="text" id="direccion" name="direccion" placeholder="Direcci&oacute;n"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input type="text" id="numeroTelefono" name="numeroTelefono" placeholder="Tel&eacute;fono"/>
+                    </div>
+                </div>
+                <div class="row 50%">
+                    <div class="12u">
+                        <input type="text" id="mascotaFavorita" name="mascotaFavorita" placeholder="Mascota Favorita"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u">
+                        <ul class="buttons">
+                            <li><input type="submit" class="special" value="Enviar Datos"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+</article>
 
 <!-- Footer -->
 <footer id="footer">
+
     <ul class="copyright">
         <li>&copy; ITESM</li>
         <li>Pedro Contreras & Paola Viquez</li>
     </ul>
+
 </footer>
 
 </body>

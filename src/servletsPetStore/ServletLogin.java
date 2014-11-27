@@ -18,6 +18,7 @@ public class ServletLogin extends ActionSupport implements SessionAware {
     private String numeroTelefono;
     private String mascotaFavorita;
     public String mensajeResultado;
+    public String mensajeSubResultado;
 
     private LoginAD loginAD;
     private Map<String, Object> sessionMap;
@@ -33,7 +34,9 @@ public class ServletLogin extends ActionSupport implements SessionAware {
         boolean resultado = loginAD.doLogin(email, password);
 
         if (resultado) {
-            mensajeResultado = "Login Exitoso";
+            mensajeResultado = "Bienvenido " + email;
+            mensajeSubResultado = "Haz iniciado sesi&oacute;n correctamente.";
+
             sessionMap.put("nombreUsuario", email);
             return "success";
         } else {

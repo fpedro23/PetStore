@@ -20,6 +20,8 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
     private Map<String, Object> requestMap;
     private int itemID;
     public Item item;
+    public String mensajeResultado;
+    public String mensajeSubResultado;
 
 
     public String addItemToCart() throws PersistentException {
@@ -56,6 +58,8 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
             cart.setUsuarioemail(UsuarioDAO.getUsuarioByORMID(nombreUsuario));
             productosAD = new ProductosAD();
             productosAD.placeOrder(cart);
+            mensajeResultado = "Felicidades, orden aceptada.";
+            mensajeSubResultado = "Tu ordén estará disponible en 3 días";
             return "success";
         }else{
             return "needLogin";
