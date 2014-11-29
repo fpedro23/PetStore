@@ -86,6 +86,8 @@
 
                                 <form action="addItemToCart" name="addItemToCart">
                                     <input type="hidden" name="itemID" value="<%out.print(listaItems[i].getId());%>"/>
+                                    <input type="text" id="cantidad" name="cantidad" placeholder="Cantidad"/>
+
                                     <ul class="buttons">
                                         <li><input type="submit" value="<%out.print(listaItems[i].getNombreItem());%>"/>
                                         </li>

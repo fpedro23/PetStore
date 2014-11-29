@@ -1,5 +1,6 @@
 <%@ page import="shoppingcart.ShoppingCart" %>
 <%@ page import="shoppingcart.ShoppingCart_item" %>
+<%@ page import="login.Usuario" %>
 <%--
   Created by IntelliJ IDEA.
   User: Pedro
@@ -75,15 +76,64 @@
         <div class="content">
             <%
                 ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+                Usuario usuario = (Usuario) session.getAttribute("nombreUsuario");
+            %>
 
+            <p>
+                Nombre de Usuario: <%out.println(usuario.getEmail());%>
+            </p>
+
+            <p>
+                Direccion : <%out.println(usuario.getDireccion());%>
+            </p>
+
+            <p>
+                Telefono : <%out.println(usuario.getNumeroTelefono());%>
+            </p>
+
+            <p>
+                Mascota Favorita: <%out.println(usuario.getMascotaFavorita());%>
+            </p>
+
+            <%
                 for (ShoppingCart_item shoppingCart_item : cart.shoppingCart_item.toArray()) {
             %>
             <p>
-                <%out.println(shoppingCart_item.getItem().getNombreItem());%>
+                Nombre de item: <%out.println(shoppingCart_item.getItem().getNombreItem());%>
             </p>
+
+            <p>
+                Cantidad : <%out.println(shoppingCart_item.getCantidad());%>
+            </p>
+
+            <p>
+                Precio item: <%out.println(shoppingCart_item.getItem().getPrecio());%>
+            </p>
+
+            <p>
+                Total Por Item : <%
+                out.println(shoppingCart_item.getCantidad() * shoppingCart_item.getItem().getPrecio());
+
+            %>
+            </p>
+
             <%
                 }
             %>
+
+            <p>
+                Total Orden: <%
+                int subtotal = 0;
+                for (ShoppingCart_item shoppingCart_item : cart.shoppingCart_item.toArray()) {
+                    subtotal = subtotal + shoppingCart_item.getItem().getPrecio() * shoppingCart_item.getCantidad();
+                }
+
+
+                out.println("" + subtotal);
+
+            %>
+            </p>
+
             <form action="placeOrder">
                 <ul class="buttons">
                     <li><input type="submit" value="Place Order!"/></li>

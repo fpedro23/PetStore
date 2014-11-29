@@ -12,7 +12,7 @@ public class CreatePetStoreData {
         try {
 
             productos.Categoria lproductosCategoria = productos.CategoriaDAO.createCategoria();
-            lproductosCategoria.setNombreCategoria("Gatos");
+            lproductosCategoria.setNombreCategoria("Perros");
             // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : producto
 
             productos.Producto lproductosProducto = productos.ProductoDAO.createProducto();
@@ -21,9 +21,43 @@ public class CreatePetStoreData {
 
             // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : item, categorias
             productos.Item lproductosItem = productos.ItemDAO.createItem();
-            lproductosItem.setNombreItem("Azul");
+            lproductosItem.setNombreItem("Rojo");
             lproductosProducto.item.add(lproductosItem);
             // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : shoppingCart_item, productos
+
+            lproductosItem.setPrecio(100);
+
+            productos.CategoriaDAO.save(lproductosCategoria);
+            productos.ProductoDAO.save(lproductosProducto);
+            productos.ItemDAO.save(lproductosItem);
+
+
+            t.commit();
+        } catch (Exception e) {
+            t.rollback();
+        }
+
+    }
+
+    public void createTestData() throws PersistentException {
+        PersistentTransaction t = login.PetStorePersistentManager.instance().getSession().beginTransaction();
+        try {
+
+            productos.Categoria lproductosCategoria = productos.CategoriaDAO.createCategoria();
+            lproductosCategoria.setNombreCategoria("Perros");
+            // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : producto
+
+            productos.Producto lproductosProducto = productos.ProductoDAO.createProducto();
+            lproductosProducto.setNombreProducto("Collar");
+            lproductosCategoria.producto.add(lproductosProducto);
+
+            // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : item, categorias
+            productos.Item lproductosItem = productos.ItemDAO.createItem();
+            lproductosItem.setNombreItem("Rojo");
+            lproductosProducto.item.add(lproductosItem);
+            // TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : shoppingCart_item, productos
+
+            lproductosItem.setPrecio(100);
 
             productos.CategoriaDAO.save(lproductosCategoria);
             productos.ProductoDAO.save(lproductosProducto);

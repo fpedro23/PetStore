@@ -4,10 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import login.UsuarioDAO;
 import org.apache.struts2.interceptor.SessionAware;
 import org.orm.PersistentException;
-import productos.Item;
-import productos.ItemDAO;
-import productos.ProductosAD;
-import productos.ProductosADInterface;
+import productos.*;
 import shoppingcart.ShoppingCart;
 import shoppingcart.ShoppingCart_item;
 
@@ -23,6 +20,7 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
     private Map<String, Object> sessionMap;
     private Map<String, Object> requestMap;
     private int itemID;
+    private int cantidad;
 
     public String addItemToCart() throws PersistentException {
         item = ItemDAO.getItemByORMID(itemID);
@@ -31,7 +29,7 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
         ShoppingCart_item shoppingCartItem = new ShoppingCart_item();
         shoppingCartItem.setItem(item);
         cart = (ShoppingCart) sessionMap.get("cart");
-
+        shoppingCartItem.setCantidad(cantidad);
         if (cart == null) {
             cart = new ShoppingCart();
             sessionMap.put("cart", cart);
@@ -56,8 +54,17 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
             String nombreUsuario = (String) sessionMap.get("nombreUsuario");
             System.out.println("Nombre de usuario para carro: " + nombreUsuario);
             cart.setUsuarioemail(UsuarioDAO.getUsuarioByORMID(nombreUsuario));
-            productosADInterface = ProductosAD.createProductosAD();
-            productosADInterface.placeOrder(cart);
+            int subtotal = 0;
+
+            for (ShoppingCart_item shoppingCart_item : cart.shoppingCart_item.toArray()) {
+                subtotal = subtotal + shoppingCart_item.getItem().getPrecio() * shoppingCart_item.getCantidad();
+            }
+
+
+            cart.setSubTotal(subtotal);
+            cart.setTotal(subtotal);
+            ProductosADFactory factory = new ProductosADFactory();
+            productosADInterface = factory.getProductosAD("PRODUCTOAD");
             mensajeResultado = "Felicidades, orden aceptada.";
             mensajeSubResultado = "Tu ordén estará disponible en 3 días";
             return "success";
@@ -75,6 +82,14 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
 
     public void setItemID(int itemID) {
         this.itemID = itemID;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     @Override

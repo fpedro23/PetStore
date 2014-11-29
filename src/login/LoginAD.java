@@ -13,7 +13,7 @@ public class LoginAD implements LoginADInterface {
 
 
     @Override
-    public boolean doLogin(String userName, String password) throws PersistentException {
+    public Usuario doLogin(String userName, String password) throws PersistentException {
 
         System.out.println("Listing Usuario...");
         UsuarioCriteria usuarioCriteria = new UsuarioCriteria();
@@ -23,9 +23,9 @@ public class LoginAD implements LoginADInterface {
         Usuario[] usuario = UsuarioDAO.listUsuarioByCriteria(usuarioCriteria);
 
         if (usuario.length == 1) {
-            return true;
+            return usuario[0];
         } else {
-            return false;
+            return null;
 
         }
 

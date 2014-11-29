@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import login.LoginAD;
 import login.LoginADInterface;
 import login.LoginFactory;
+import login.Usuario;
 import org.apache.struts2.interceptor.SessionAware;
 import org.orm.PersistentException;
 
@@ -33,13 +34,13 @@ public class ServletLogin extends ActionSupport implements SessionAware {
     public String doLogin() throws PersistentException {
         LoginFactory factory = new LoginFactory();
         LoginADInterface loginAD = factory.getLoginAD("LOGINAD");
-        boolean resultado = loginAD.doLogin(email, password);
+        Usuario resultado = loginAD.doLogin(email, password);
 
-        if (resultado) {
-            mensajeResultado = "Bienvenido " + email;
+        if (resultado != null) {
+            mensajeResultado = "Bienvenido " + resultado.getEmail();
             mensajeSubResultado = "Haz iniciado sesi&oacute;n correctamente.";
 
-            sessionMap.put("nombreUsuario", email);
+            sessionMap.put("nombreUsuario", resultado);
             return "success";
         } else {
             mensajeResultado = "Login Fallido";
