@@ -7,8 +7,16 @@ import shoppingcart.ShoppingCartDAO;
 /**
  * Created by Pedro on 23/11/14.
  */
-public class ProductosAD {
+public class ProductosAD implements ProductosADInterface {
 
+    private ProductosAD() {
+    }
+
+    public static ProductosADInterface createProductosAD() {
+        return new ProductosAD();
+    }
+
+    @Override
     public Categoria[] listarCategorias() throws PersistentException {
         try {
             Categoria[] listaCategorias = productos.CategoriaDAO.listCategoriaByQuery(null, null);
@@ -21,6 +29,7 @@ public class ProductosAD {
 
     }
 
+    @Override
     public Producto[] listarProductosDeCategoria(String nombreCategoria) throws PersistentException {
         try {
             Categoria categoria = CategoriaDAO.getCategoriaByORMID(nombreCategoria);
@@ -37,6 +46,7 @@ public class ProductosAD {
 
     }
 
+    @Override
     public Producto[] buscarProducto(String nombreProducto) throws PersistentException {
         try {
             ProductoCriteria productoCriteria = new ProductoCriteria();
@@ -60,6 +70,7 @@ public class ProductosAD {
     }
 
 
+    @Override
     public Item[] listarItemsDeProducto(String nombreProducto, String nombreCategoria) throws PersistentException {
         try {
             Categoria categoria = CategoriaDAO.getCategoriaByORMID(nombreCategoria);
@@ -80,11 +91,13 @@ public class ProductosAD {
         }
     }
 
+    @Override
     public Item findItem(int idItem) throws PersistentException {
         Item item = ItemDAO.getItemByORMID(idItem);
         return item;
     }
 
+    @Override
     public void placeOrder(ShoppingCart cart) throws PersistentException {
         ShoppingCartDAO.save(cart);
     }

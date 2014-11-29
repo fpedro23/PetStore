@@ -2,6 +2,8 @@ package servletsPetStore;
 
 import com.opensymphony.xwork2.ActionSupport;
 import login.LoginAD;
+import login.LoginADInterface;
+import login.LoginFactory;
 import org.apache.struts2.interceptor.SessionAware;
 import org.orm.PersistentException;
 
@@ -12,14 +14,13 @@ import java.util.Map;
  */
 public class ServletLogin extends ActionSupport implements SessionAware {
 
+    public String mensajeResultado;
+    public String mensajeSubResultado;
     private String email;
     private String password;
     private String direccion;
     private String numeroTelefono;
     private String mascotaFavorita;
-    public String mensajeResultado;
-    public String mensajeSubResultado;
-
     private LoginAD loginAD;
     private Map<String, Object> sessionMap;
 
@@ -30,7 +31,8 @@ public class ServletLogin extends ActionSupport implements SessionAware {
 
 
     public String doLogin() throws PersistentException {
-        loginAD = new LoginAD();
+        LoginFactory factory = new LoginFactory();
+        LoginADInterface loginAD = factory.getLoginAD("LOGINAD");
         boolean resultado = loginAD.doLogin(email, password);
 
         if (resultado) {
@@ -55,7 +57,8 @@ public class ServletLogin extends ActionSupport implements SessionAware {
     }
 
     public String registerUser() throws PersistentException {
-        loginAD = new LoginAD();
+        LoginFactory factory = new LoginFactory();
+        LoginADInterface loginAD = factory.getLoginAD("LOGINAD");
         boolean resultado = loginAD.registerNewUser(email, password, direccion, numeroTelefono, mascotaFavorita);
         if (resultado) {
             mensajeResultado = "Registro de usuario exitoso";

@@ -7,11 +7,12 @@ import org.orm.PersistentTransaction;
 /**
  * Created by Pedro on 22/11/14.
  */
-public class LoginAD {
+public class LoginAD implements LoginADInterface {
 
     private static final int ROW_COUNT = 100;
 
 
+    @Override
     public boolean doLogin(String userName, String password) throws PersistentException {
 
         System.out.println("Listing Usuario...");
@@ -30,6 +31,7 @@ public class LoginAD {
 
     }
 
+    @Override
     public boolean registerNewUser(String email, String password, String direccion, String numeroTelefono, String mascotaFavorita) throws PersistentException {
 
         PersistentTransaction t = login.PetStorePersistentManager.instance().getSession().beginTransaction();

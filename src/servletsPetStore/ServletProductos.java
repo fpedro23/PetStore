@@ -2,10 +2,7 @@ package servletsPetStore;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.orm.PersistentException;
-import productos.Categoria;
-import productos.Item;
-import productos.Producto;
-import productos.ProductosAD;
+import productos.*;
 
 /**
  * Created by Pedro on 23/11/14.
@@ -21,10 +18,11 @@ public class ServletProductos extends ActionSupport {
     public String mensajeResultado;
 
     public String listCategories() throws PersistentException {
-        ProductosAD productosAD;
+        ProductosADFactory factory = new ProductosADFactory();
+        ProductosADInterface productosADInterface;
 
-        productosAD = new ProductosAD();
-        listaCategorias = productosAD.listarCategorias();
+        productosADInterface = factory.getProductosAD("PRODUCTOAD");
+        listaCategorias = productosADInterface.listarCategorias();
 
         if (listaCategorias == null) {
             mensajeResultado = "Error, no se encontró ningun producto.";
@@ -36,10 +34,10 @@ public class ServletProductos extends ActionSupport {
     }
 
     public String listProductsFromCategory() throws PersistentException {
-        ProductosAD productosAD;
-
-        productosAD = new ProductosAD();
-        listaProductos = productosAD.listarProductosDeCategoria(nombreCategoria);
+        ProductosADFactory factory = new ProductosADFactory();
+        ProductosADInterface productosADInterface;
+        productosADInterface = factory.getProductosAD("PRODUCTOAD");
+        listaProductos = productosADInterface.listarProductosDeCategoria(nombreCategoria);
         if (listaProductos == null) {
             mensajeResultado = "Error, no se encontró ningun producto.";
             return "error";
@@ -49,10 +47,10 @@ public class ServletProductos extends ActionSupport {
     }
 
     public String listItemsFromProduct() throws PersistentException {
-        ProductosAD productosAD;
-
-        productosAD = new ProductosAD();
-        listaItems = productosAD.listarItemsDeProducto(nombreProducto, nombreCategoria);
+        ProductosADFactory factory = new ProductosADFactory();
+        ProductosADInterface productosADInterface;
+        productosADInterface = factory.getProductosAD("PRODUCTOAD");
+        listaItems = productosADInterface.listarItemsDeProducto(nombreProducto, nombreCategoria);
         if (listaItems == null) {
             mensajeResultado = "Error, no se encontró ningun producto.";
             return "error";
@@ -62,9 +60,10 @@ public class ServletProductos extends ActionSupport {
     }
 
     public String findProductByName() throws PersistentException {
-        ProductosAD productosAD;
-        productosAD = new ProductosAD();
-        listaProductos = productosAD.buscarProducto(nombreProducto);
+        ProductosADFactory factory = new ProductosADFactory();
+        ProductosADInterface productosADInterface;
+        productosADInterface = factory.getProductosAD("PRODUCTOAD");
+        listaProductos = productosADInterface.buscarProducto(nombreProducto);
         if (listaProductos == null) {
             mensajeResultado = "Error, no se encontró ningun producto.";
             return "error";
@@ -74,9 +73,10 @@ public class ServletProductos extends ActionSupport {
     }
 
     public String findItemByID() throws PersistentException {
-        ProductosAD productosAD;
-        productosAD = new ProductosAD();
-        item = productosAD.findItem(idItem);
+        ProductosADFactory factory = new ProductosADFactory();
+        ProductosADInterface productosADInterface;
+        productosADInterface = factory.getProductosAD("PRODUCTOAD");
+        item = productosADInterface.findItem(idItem);
         if (item == null) {
             mensajeResultado = "Error, no se encontró ningun Item.";
             return "error";

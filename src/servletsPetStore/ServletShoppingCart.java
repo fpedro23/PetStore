@@ -7,6 +7,7 @@ import org.orm.PersistentException;
 import productos.Item;
 import productos.ItemDAO;
 import productos.ProductosAD;
+import productos.ProductosADInterface;
 import shoppingcart.ShoppingCart;
 import shoppingcart.ShoppingCart_item;
 
@@ -16,13 +17,12 @@ import java.util.Map;
  * Created by Pedro on 24/11/14.
  */
 public class ServletShoppingCart extends ActionSupport implements SessionAware {
-    private Map<String, Object> sessionMap;
-    private Map<String, Object> requestMap;
-    private int itemID;
     public Item item;
     public String mensajeResultado;
     public String mensajeSubResultado;
-
+    private Map<String, Object> sessionMap;
+    private Map<String, Object> requestMap;
+    private int itemID;
 
     public String addItemToCart() throws PersistentException {
         item = ItemDAO.getItemByORMID(itemID);
@@ -50,18 +50,18 @@ public class ServletShoppingCart extends ActionSupport implements SessionAware {
     public String placeOrder() throws PersistentException {
         ShoppingCart cart;
         cart = (ShoppingCart) sessionMap.get("cart");
-        ProductosAD productosAD;
+        ProductosADInterface productosADInterface;
 
         if (sessionMap.containsKey("nombreUsuario")) {
-            String nombreUsuario = (String)sessionMap.get("nombreUsuario");
-            System.out.println("Nombre de usuario para carro: "+nombreUsuario);
+            String nombreUsuario = (String) sessionMap.get("nombreUsuario");
+            System.out.println("Nombre de usuario para carro: " + nombreUsuario);
             cart.setUsuarioemail(UsuarioDAO.getUsuarioByORMID(nombreUsuario));
-            productosAD = new ProductosAD();
-            productosAD.placeOrder(cart);
+            productosADInterface = ProductosAD.createProductosAD();
+            productosADInterface.placeOrder(cart);
             mensajeResultado = "Felicidades, orden aceptada.";
             mensajeSubResultado = "Tu ordén estará disponible en 3 días";
             return "success";
-        }else{
+        } else {
             return "needLogin";
         }
 
